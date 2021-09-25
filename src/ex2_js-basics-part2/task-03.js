@@ -4,8 +4,10 @@ function calculateCountEventOddZeroElementsArray(array) {
   let countOdd = 0;
   let countZero = 0;
   let typeElementArray;
+
   for (let i = 0; i < lengthArray; i += 1) {
     typeElementArray = typeof array[i];
+
     if (typeElementArray === 'number') {
       if (array[i] === 0) {
         countZero += 1;
@@ -16,6 +18,8 @@ function calculateCountEventOddZeroElementsArray(array) {
       }
     }
   }
+
   return [countEvent, countOdd, countZero];
 }
+
 module.exports = calculateCountEventOddZeroElementsArray;

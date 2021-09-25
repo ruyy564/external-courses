@@ -1,8 +1,10 @@
 function defineTypeVariable(variable) {
-  let typeVariable = typeof variable;
+  const typeVariable = typeof variable;
+
   if ((typeVariable === 'number' && isNaN(variable)) || (typeVariable !== 'string' && typeVariable !== 'number')) {
-    typeVariable = undefined;
+    return undefined;
   }
+
   return typeVariable;
 }
 
