@@ -1,9 +1,10 @@
 function calculateCountOccurrencesEachCharacter(string) {
   let copyString = string;
-
+  let regular;
   while (copyString.length !== 0) {
-    console.log(copyString.match(new RegExp(`${copyString[0]}`, 'g')).length);
-    copyString = copyString.replaceAll(copyString[0], '');
+    regular = new RegExp(`${copyString[0]}`, 'g');
+    console.log(copyString.match().length);
+    copyString = copyString.replace(regular, '');
   }
 
   return undefined;
