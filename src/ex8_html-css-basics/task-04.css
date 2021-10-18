@@ -1,0 +1,39 @@
+* {
+    font-family: Ephesis, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 5vh;
+}
+
+.second-paragraph {
+    width: 50%;
+}
+
+p {
+    font-size: 2vw;
+}
+
+ul, dd {
+    font-size: 0.8em;
+}
+
+pre {
+    background: url(https://telegra.ph/file/2f7edb2f4c7bfacb00826.jpg) no-repeat right;
+    background-size: contain;
+}
+
+img {
+    width: 300px;
+    height: 200px;
+}
+
+h1 {
+    background: greenyellow;
+}
+
+h2 {
+    background: #1af3e9;
+}
+
+h3 {
+    background: rgba(241, 18, 151, 0.3);
+}
