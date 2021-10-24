@@ -1,0 +1,4 @@
+fieldset>label, .form-group-end>label {
+    display: block;
+    margin: 10px;
+}
