@@ -1,0 +1,7 @@
+tr:nth-child(odd) {
+    background-color: #e8edf4;
+}
+
+tr:hover {
+    background-color: #e2e5e9;
+}

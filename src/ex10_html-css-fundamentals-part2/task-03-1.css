@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+#table-header {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    background-color: #e3eaf3;
+}
+
+.table-employees {
+    color: #798ba1;
+}
+
+tr {
+    background-color: #f2f6fa;
+}
+
+td, th {
+    padding: 10px;
+}

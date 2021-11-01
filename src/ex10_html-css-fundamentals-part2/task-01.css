@@ -1,0 +1,19 @@
+img, .figure {
+    width: 250px;
+    height: 250px;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.figure {
+    transform: rotate(45deg);
+    overflow: hidden;
+}
+
+.figure-1 {
+    width: 250px;
+    height: 250px;
+    transform: rotate(-45deg) translateX(50px);
+}
