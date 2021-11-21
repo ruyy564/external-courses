@@ -8,13 +8,13 @@ const buttonProfile = document.getElementsByClassName('button-profile')[0];
 buttonProfile.addEventListener('click', () => {
   const list = document.getElementById('profile-list');
   const imageArrow = document.getElementById('img-arrow');
+  const ulListProfile = document.createElement('ulListProfile');
+  const profile = document.getElementsByClassName('right-side')[0];
 
   if (list != null) {
     list.remove();
     imageArrow.src = 'img/arrow_down.svg';
   } else {
-    const ulListProfile = document.createElement('ulListProfile');
-    const profile = document.getElementsByClassName('right-side')[0];
     imageArrow.src = 'img/arrow_up.svg';
     ulListProfile.id = 'profile-list';
     ulListProfile.innerHTML = listProfile;
@@ -23,10 +23,10 @@ buttonProfile.addEventListener('click', () => {
 });
 
 window.onclick = function (event) {
-  if (!event.target.matches('.button-profile')) {
-    const list = document.getElementById('profile-list');
-    const imageArrow = document.getElementById('img-arrow');
+  const list = document.getElementById('profile-list');
+  const imageArrow = document.getElementById('img-arrow');
 
+  if (!event.target.matches('.button-profile')) {
     if (!event.target.matches('img')) {
       if (!event.target.matches('div')) {
         if (list != null) {
