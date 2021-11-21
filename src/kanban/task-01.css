@@ -196,3 +196,30 @@ span.signature {
     left: -10px;
     top: -3px;
 }
+
+#profile-list {
+    background-color: #0067A3;
+    position: absolute;
+    top: 60px;
+    right: 1px;
+    list-style: none;
+}
+
+#profile-list li {
+    padding: 15px 0;
+}
+
+.profile-list-item {
+    padding: 15px;
+}
+
+.profile-list-item {
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#profile-list li:hover {
+    background-color: #0079BF;
+}
