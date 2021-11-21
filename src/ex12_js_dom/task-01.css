@@ -39,10 +39,6 @@ button {
     height: 100%;
     width: 500px;
     transition: 0.7s;
-    animation-name: move;
-    animation-timing-function: ease;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
 }
 
 #button-before, #button-after {
@@ -67,14 +63,4 @@ button {
 
 #button-after {
     left: 470px;
-}
-
-@keyframes move {
-    from {
-        opacity: 0.4;
-    }
-
-    to {
-        opacity: 1;
-    }
 }
