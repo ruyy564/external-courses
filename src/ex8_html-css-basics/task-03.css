@@ -1,0 +1,15 @@
+.first-div {
+    border: 5px solid #000;
+}
+
+.second-div {
+    outline: 10px dashed rgb(231, 14, 14);
+}
+
+.third-div {
+    box-shadow: 1px 2px 0px 3px orange;
+}
+
+div {
+    margin-bottom: 20px;
+}
