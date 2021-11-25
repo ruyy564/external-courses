@@ -61,6 +61,10 @@ button {
     cursor: pointer;
 }
 
+input {
+    border: none;
+}
+
 span.signature {
     text-transform: uppercase;
 }
@@ -95,14 +99,25 @@ span.signature {
 }
 
 .task-content {
+    position: relative;
     width: 100%;
     margin-top: 10px;
     overflow: auto;
     height: 100%;
 }
 
-.add-card {
+.active {
     color: #5E6C84;
+}
+
+.active:hover {
+    color: #030405;
+    cursor: pointer;
+}
+
+.disable {
+    color: #99afd4;
+    cursor: inherit;
 }
 
 .info-tasks {
@@ -111,13 +126,14 @@ span.signature {
     width: 390px;
 }
 
-.name-task {
+.name-task, #input-task, #dropdown-task {
     background-color: #FFFFFF;
     margin-bottom: 15px;
     margin-right: 10px;
     width: 95%;
     border-radius: 5px;
     padding: 7px;
+    word-wrap: break-word;
 }
 
 .button-add {
@@ -195,4 +211,18 @@ span.signature {
     border: 2px solid #FFFFFF;
     left: -10px;
     top: -3px;
+}
+
+#dropdown-task {
+    background-color: #FFFFFF;
+    position: relative;
+
+    list-style: none;
+}
+
+
+
+#dropdown-task li:hover {
+    background-color: #EBECF0;
+    cursor: pointer;
 }
