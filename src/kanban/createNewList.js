@@ -201,7 +201,3 @@ const createNewList= (id)=>{
   createBlock(id);
   addEvent();
 }
-
-
-
-

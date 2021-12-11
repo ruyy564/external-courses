@@ -45,4 +45,3 @@ const arrayButtons = [buttonBacklog, buttonReady, buttonInProgress, buttonFinish
 
 loadArrayDataInLocalStorage(boardsMocks);
 setStartTasksBeforeWork(key, arrayButtons);
-
