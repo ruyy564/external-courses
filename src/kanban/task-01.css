@@ -216,11 +216,8 @@ span.signature {
 #dropdown-task {
     background-color: #FFFFFF;
     position: relative;
-
     list-style: none;
 }
-
-
 
 #dropdown-task li:hover {
     background-color: #EBECF0;
