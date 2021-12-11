@@ -162,3 +162,46 @@ const createDropdown = (event) => {
   event.target.before(dropdown);
   dropdown.focus();
 };
+
+const createBlock= (id)=>{
+  const block=`<div class="task" id="${id}">
+  <div class="task-header">
+    <h2>${id.charAt(0).toUpperCase() + id.slice(1)}</h2>
+    <div class="task-settings">
+      <img src="img/dot.svg" alt="" />
+    </div>
+  </div>
+  <div class="task-content">
+    <button class="active" id="button-${id}">
+      <img src="img/plus.svg" alt="" />
+      Add card
+    </button>
+  </div>
+</div>`
+const main=document.querySelector('main');
+
+main.innerHTML=block+main.innerHTML;
+}
+
+const addEvent=()=>{
+  const main=document.querySelector('main');
+
+  for(let i=0;i<main.children.length;i+=1){
+    if(i===0){
+      document.getElementById(`button-${main.children[i].id}`).addEventListener('click', addInput);
+    }else{
+      document.getElementById(`button-${main.children[i].id}`).addEventListener('click', createDropdown);
+    }
+  }
+}
+
+const createNewList= (id)=>{
+  const main=document.querySelector('main');
+
+  createBlock(id);
+  addEvent();
+}
+
+
+
+
