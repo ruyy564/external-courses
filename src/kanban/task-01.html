@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban</title>
+    <link rel="stylesheet" href="task-01.css" />
+  </head>
+  <body>
+    <header>
+      <div class="left-side">
+        <div class="logo">
+          <div class="top-line-logo"></div>
+          <div class="center-line-logo"></div>
+          <div class="bottom-line-logo"></div>
+        </div>
+        <h1>Awesome Kanban Board</h1>
+      </div>
+      <div class="right-side">
+        <button class="button-add">
+          <img src="img/add.svg" class="img-button-add" alt="" />
+          Create new list
+        </button>
+        <button class="button-profile">
+          <div class="profile">
+            <img src="img/profile.svg" class="img-button-profile" alt="" />
+          </div>
+          <img src="img/arrow.svg" alt="" />
+        </button>
+      </div>
+    </header>
+    <main></main>
+    <footer>
+      <div class="info-tasks">
+        <div class="active-tasks">
+          Active tasks: &#60;
+          <span class="signature">M</span>
+          &#62;
+        </div>
+        <div class="finished-tasks">
+          Finished tasks: &#60;
+          <span class="signature">M</span>
+          &#62;
+        </div>
+      </div>
+      <div class="info-kanban">
+        Kanban board by &#60;
+        <span class="signature">Name</span>
+        &#62;, &#60;
+        <span class="signature">Year</span>
+        &#62;
+      </div>
+    </footer>
+    <script src="createNewList.js"></script>
+    <script src="createStartBlocklist.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
