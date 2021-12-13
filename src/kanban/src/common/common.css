@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 28px;
+    margin-left: 5px;
+}
+
+button {
+    padding: 0px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+header, footer, .left-side, .right-side, body, .task-header, .task-settings, .task {
+    display: flex;
+    justify-content: space-between;
+}
+
+header, footer, .left-side, .right-side, .task-header, .task-settings, .info-tasks, .button-add {
+    align-items: center;
+}
+
+footer, header {
+    background-color: #0067A3;
+    height: 8%;
+}
