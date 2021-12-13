@@ -1,0 +1,38 @@
+input {
+    border: none;
+}
+
+.active {
+    color: #5E6C84;
+}
+
+.active:hover {
+    color: #030405;
+    cursor: pointer;
+}
+
+.disable {
+    color: #99afd4;
+    cursor: inherit;
+}
+
+.name-task, #input-task, #dropdown-task {
+    background-color: #FFFFFF;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    width: 95%;
+    border-radius: 5px;
+    padding: 7px;
+    word-wrap: break-word;
+}
+
+#dropdown-task {
+    background-color: #FFFFFF;
+    position: relative;
+    list-style: none;
+}
+
+#dropdown-task li:hover {
+    background-color: #EBECF0;
+    cursor: pointer;
+}

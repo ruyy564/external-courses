@@ -13,27 +13,11 @@ buttonProfile.addEventListener('click', () => {
 
   if (list != null) {
     list.remove();
-    imageArrow.src = 'img/arrow_down.svg';
+    imageArrow.src = 'assets/arrow_down.svg';
   } else {
-    imageArrow.src = 'img/arrow_up.svg';
+    imageArrow.src = 'assets/arrow_up.svg';
     ulListProfile.id = 'profile-list';
     ulListProfile.innerHTML = listProfile;
     profile.append(ulListProfile);
   }
 });
-
-window.onclick = function (event) {
-  const list = document.getElementById('profile-list');
-  const imageArrow = document.getElementById('img-arrow');
-
-  if (!event.target.matches('.button-profile')) {
-    if (!event.target.matches('img')) {
-      if (!event.target.matches('div')) {
-        if (list != null) {
-          list.remove();
-          imageArrow.src = 'img/arrow_down.svg';
-        }
-      }
-    }
-  }
-};

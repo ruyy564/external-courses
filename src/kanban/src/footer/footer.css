@@ -1,0 +1,16 @@
+footer {
+    color: #FFFFFF;
+    padding: 17px;
+}
+
+span.signature {
+    text-transform: uppercase;
+}
+
+.info-tasks {
+    margin-left: 13px;
+}
+
+.info-kanban {
+    margin-right: 3px;
+}
