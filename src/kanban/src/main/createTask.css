@@ -1,0 +1,74 @@
+input {
+    border: none;
+}
+
+.active {
+    color: #5E6C84;
+}
+
+.active:hover {
+    color: #030405;
+    cursor: pointer;
+}
+
+.disable {
+    color: #99afd4;
+    cursor: inherit;
+}
+
+.name-task, #input-task, #dropdown-task {
+    background-color: #FFFFFF;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    width: 95%;
+    border-radius: 5px;
+    padding: 7px;
+    word-wrap: break-word;
+}
+
+#dropdown-task {
+    background-color: #FFFFFF;
+    position: relative;
+    list-style: none;
+}
+
+#dropdown-task li:hover {
+    background-color: #EBECF0;
+    cursor: pointer;
+}
+
+.task-header {
+    position: relative
+}
+
+#list-setting {
+    background-color: #0067A3;
+    position: absolute;
+    list-style: none;
+    right: -14px;
+    top: 31px;
+    list-style: none;
+}
+
+.task-settings:hover {
+    cursor: pointer;
+}
+
+#list-setting li {
+    padding: 15px 0;
+}
+
+#list-setting li a {
+    padding: 15px;
+}
+
+#list-setting li a {
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#list-setting li:hover {
+    background-color: #0079BF;
+}
