@@ -1,39 +1,41 @@
+import {createDropDownSetting} from '../main/createDropListSetting.js'
+
 export const saveTask = (key, value) => {
-  const data = JSON.parse(localStorage.getItem(key));
+  let data = JSON.parse(localStorage.getItem('boardsMocks'));
 
-  data.issues.push({ id: `task${data.issues.length + 1}`, name: value });
-  localStorage.setItem(key, JSON.stringify(data));
-};
-
-export const loadDataInLocalStorage = (data) => {
-  localStorage.setItem(data.title, JSON.stringify(data));
-};
-
-export const loadArrayDataInLocalStorage = (data) => {
   for (let i = 0; i < data.length; i += 1) {
-    if (localStorage.getItem(data[i].title) === null) {
-      loadDataInLocalStorage(data);
+    if(data[i].title===key){
+      data[i].issues.push({ id: `task${data[i].issues.length + 1}`, name: value });
+      break;
     }
   }
+
+  loadDataInLocalStorage(data);
+  calcStartCountTask();
+};
+
+export const calcStartCountTask=()=>{
+  let data = JSON.parse(localStorage.getItem('boardsMocks'));
+  
+  if(data.length!==0){  
+    document.getElementById('count-first-block').innerHTML=data[0].issues.length;
+    document.getElementById('count-last-block').innerHTML=data[data.length-1].issues.length;
+  }else{
+    document.getElementById('count-first-block').innerHTML=0;
+    document.getElementById('count-last-block').innerHTML=0;
+  }
+}
+export const loadDataInLocalStorage = (data) => {
+    localStorage.setItem('boardsMocks', JSON.stringify(data));
 };
 
 export const downloadDataFromLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
 
-const downloadArrayDataFromLocalStorage = (arrayKey) => {
-  const data = [];
+export const setStartTasksBeforeWork = () => {
+  const data = downloadDataFromLocalStorage('boardsMocks');
 
-  for (let i = 0; i < arrayKey.length; i += 1) {
-    data.push(downloadDataFromLocalStorage(arrayKey[i]));
-  }
-
-  return data;
-};
-
-export const setStartTasksBeforeWork = (key) => {
-  const data = downloadArrayDataFromLocalStorage(key);
-
-  for (let i = 0; i < key.length; i += 1) {
-    addTasksToBlock(key[i], data[i].issues);
+  for (let i = 0; i < data.length; i += 1) {
+    addTasksToBlock(data[i].title, data[i].issues);
   }
 };
 
@@ -63,14 +65,15 @@ const removeTask = (block, index) => {
   task.remove();
 };
 
-export const getKey = (data) => {
-  const key = [];
+export const getKey = (key) => {
+  const data=downloadDataFromLocalStorage(key);
+  const loadKey = [];
 
   for (let i = 0; i < data.length; i += 1) {
-    key.push(data[i].title);
+    loadKey.push(data[i].title);
   }
 
-  return key;
+  return loadKey;
 };
 
 const addInput = (event) => {
@@ -94,9 +97,9 @@ const findBlockRight = (key, arrayKey) => {
 };
 
 export const disableButton = () => {
-  const arrayKey = ['backlog', 'ready', 'inProgress', 'finished'];
-  const data = downloadArrayDataFromLocalStorage(arrayKey);
-
+  const arrayKey = getKey('boardsMocks');
+  const data = downloadDataFromLocalStorage('boardsMocks');
+  
   for (let i = 0; i < data.length - 1; i += 1) {
     const rightBlock = findBlockRight(arrayKey[i], arrayKey);
     const button = document.getElementById(`button-${rightBlock}`);
@@ -122,17 +125,21 @@ export const replaceInputWithTask = (input) => {
 
 export const replaceDropdownWithTask = (event) => {
   const key = event.target.parentNode.parentNode.parentNode.id;
-  const arrayKey = ['backlog', 'ready', 'inProgress', 'finished'];
+  const arrayKey = getKey('boardsMocks');
   const leftBlock = findBlockLeft(key, arrayKey);
-  const data = downloadDataFromLocalStorage(leftBlock);
-
-  for (let i = 0; i < data.issues.length; i += 1) {
-    if (data.issues[i].name === event.target.innerHTML) {
-      data.issues.splice(i, 1);
-      removeTask(leftBlock, i);
-      break;
+  let data = downloadDataFromLocalStorage('boardsMocks');
+  for(let j=0; j<data.length; j+=1){
+    if(data[j].title===leftBlock){
+      for (let i = 0; i < data[j].issues.length; i += 1) {
+        if (data[j].issues[i].name === event.target.innerHTML) {
+          data[j].issues.splice(i, 1);
+          removeTask(leftBlock, i);
+          break;
+        }
+      }
     }
   }
+
   loadDataInLocalStorage(data);
   saveTask(key, event.target.innerHTML);
   createTask(event.target.innerHTML, key);
@@ -148,14 +155,19 @@ const createDropdown = (event) => {
   }
 
   const key = event.target.parentNode.parentNode.id;
-  const arrayKey = ['backlog', 'ready', 'inProgress', 'finished'];
-  const data = downloadDataFromLocalStorage(findBlockLeft(key, arrayKey));
+  const arrayKey = getKey('boardsMocks');
+  const nameLeftBlock=findBlockLeft(key, arrayKey)
+  const data = downloadDataFromLocalStorage('boardsMocks');
   const dropdown = document.createElement('ul');
   let list = '';
-
-  for (let i = 0; i < data.issues.length; i += 1) {
-    list += `<li class="li-task">${data.issues[i].name}</li>`;
+  for(let j=0; j<data.length; j+=1){
+    if(data[j].title===nameLeftBlock){
+      for (let i = 0; i < data[j].issues.length; i += 1) {
+        list += `<li class="li-task">${data[j].issues[i].name}</li>`;
+      }
+    }
   }
+  
   dropdown.id = 'dropdown-task';
   dropdown.innerHTML = list;
   event.target.before(dropdown);
@@ -168,7 +180,8 @@ const createDropdown = (event) => {
 };
 
 const createBlock= (id)=>{
-  const block=`<div class="task" id="${id}">
+  let block;
+    block=`<div class="task" id="${id}">
   <div class="task-header">
     <h2>${id.charAt(0).toUpperCase() + id.slice(1)}</h2>
     <div class="task-settings">
@@ -182,26 +195,93 @@ const createBlock= (id)=>{
     </button>
   </div>
 </div>`
+  
+
 const main=document.querySelector('main');
 
 main.innerHTML=block+main.innerHTML;
 }
 
+export const createNewBlock= ()=>{
+  const block=`<div class="task">
+    <div class="task-header">
+      <h2><input id="task-name"></h2>
+      <div class="task-settings">
+        <img src="assets/dot.svg" alt="" />
+      </div>
+    </div>
+    <div class="task-content">
+      <button class="active">
+        <img src="assets/plus.svg" alt="" />
+        Add card
+      </button>
+    </div>
+  </div>`
+  
+const main=document.querySelector('main');
+document.getElementById('msg').style.display="none";
+main.innerHTML=block+main.innerHTML;
+let inputName= document.getElementById('task-name');
+inputName.focus();
+}
+
+
 const addEvent=()=>{
   const main=document.querySelector('main');
 
   for(let i=0;i<main.children.length;i+=1){
+    document.querySelectorAll(`.task-settings`)[i].onclick = (event)=>{
+      createDropDownSetting(event);
+    };
+
     if(i===0){
-      document.getElementById(`button-${main.children[i].id}`).addEventListener('click', addInput);
+      document.getElementById(`button-${main.children[i].id}`).onclick= addInput;
     }else{
-      document.getElementById(`button-${main.children[i].id}`).addEventListener('click', createDropdown);
+      document.getElementById(`button-${main.children[i].id}`).onclick=createDropdown;
     }
   }
 }
 
-export const createNewList= (id)=>{
-  const main=document.querySelector('main');
+export const createFullList=()=>{
+  const arrayKey=getKey('boardsMocks');
 
-  createBlock(id);
+  for(let i=arrayKey.length-1; i>=0; i-=1){
+    createBlock(arrayKey[i]);
+  }
   addEvent();
+}
+export const saveBlock=(input,task)=>{
+  task.id=input.value;
+  task.children[0].children[0].innerHTML=input.value;
+  task.children[1].children[0].id=`button-${input.value}`;
+
+  let data=downloadDataFromLocalStorage('boardsMocks');
+  data.unshift({
+    title: input.value,
+    issues: [
+    ],
+  });  
+  loadDataInLocalStorage(data);
+  addEvent();
+  disableButton();
+  calcStartCountTask();
+}
+
+export const removeBlock=(id)=>{
+  let data = downloadDataFromLocalStorage('boardsMocks');
+
+  for(let j=0; j<data.length; j+=1){
+    if(data[j].title===id){
+      data.splice(j, 1);
+      break;
+    }
+  }
+  loadDataInLocalStorage(data);
+  addEvent();
+  disableButton();
+  calcStartCountTask();
+  if(data.length==0){
+    document.getElementById('msg').style.display="block";
+  }
+
 }

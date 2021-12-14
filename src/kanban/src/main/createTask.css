@@ -36,3 +36,39 @@ input {
     background-color: #EBECF0;
     cursor: pointer;
 }
+
+.task-header {
+    position: relative
+}
+
+#list-setting {
+    background-color: #0067A3;
+    position: absolute;
+    list-style: none;
+    right: -14px;
+    top: 31px;
+    list-style: none;
+}
+
+.task-settings:hover {
+    cursor: pointer;
+}
+
+#list-setting li {
+    padding: 15px 0;
+}
+
+#list-setting li a {
+    padding: 15px;
+}
+
+#list-setting li a {
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#list-setting li:hover {
+    background-color: #0079BF;
+}

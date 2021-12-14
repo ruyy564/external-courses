@@ -1,62 +1,19 @@
 import './styles.css';
 import './header/createProfileDropDown.js';
+import './header/createList.js';
 import './main/createStartBlocklist.js';
-import {getKey,replaceInputWithTask,loadArrayDataInLocalStorage,setStartTasksBeforeWork} from './main/createNewList';
+import {replaceInputWithTask,saveBlock,removeBlock,downloadDataFromLocalStorage} from './main/createNewList';
+import './main/createDropListSetting.js';
 
-const boardsMocks = [
-    {
-      title: 'backlog',
-      issues: [
-        {
-          id: 'task1',
-          name: 'Sleep',
-        },
-      ],
-    },
-    {
-      title: 'ready',
-      issues: [
-        {
-          id: 'task1',
-          name: 'Lunch',
-        },
-      ],
-    },
-    {
-      title: 'inProgress',
-      issues: [
-        {
-          id: 'task1',
-          name: 'Nervous breakdown',
-        },
-      ],
-    },
-    {
-      title: 'finished',
-      issues: [
-        {
-          id: 'task1',
-          name: 'Visit to the psychiatric hospital',
-        },
-      ],
-    },
-  ];
-  const key = getKey(boardsMocks);
-  const buttonBacklog = document.getElementById('button-backlog');
-  const buttonReady = document.getElementById('button-ready');
-  const buttonInProgress = document.getElementById('button-inProgress');
-  const buttonFinished = document.getElementById('button-finished');
-  const arrayButtons = [buttonBacklog, buttonReady, buttonInProgress, buttonFinished];
-  
-  loadArrayDataInLocalStorage(boardsMocks);
-  setStartTasksBeforeWork(key, arrayButtons);
-
-  
 window.onclick = (event) => {
   const input = document.getElementById('input-task');
+  const inputName= document.getElementById('task-name');
+  const task=document.querySelector('.task');
   const dropdown = document.getElementById('dropdown-task');
   const list = document.getElementById('profile-list');
   const imageArrow = document.getElementById('img-arrow');
+  const settingDropdown=document.getElementById('list-setting');
+  const data = downloadDataFromLocalStorage('boardsMocks');
 
   if (!event.target.matches('.button-profile')) {
     if (!event.target.matches('img')) {
@@ -68,6 +25,19 @@ window.onclick = (event) => {
       }
     }
   }
+  if (inputName != null) {
+    if (inputName !== document.activeElement) {
+      if (inputName.value !== '') {
+        saveBlock(inputName,task);
+      } else {
+        task.remove();
+        if(data.length==0){
+          document.getElementById('msg').style.display="block";
+        }
+      }
+    }
+  }
+
   if (input != null) {
     if (input !== document.activeElement) {
       if (input.value !== '') {
@@ -87,6 +57,19 @@ window.onclick = (event) => {
       }
     }
   }
+
+  if (settingDropdown != null) {
+    if(event.target==settingDropdown.children[0].children[0]){
+      event.target.parentNode.parentNode.parentNode.parentNode.remove();
+      removeBlock(event.target.parentNode.parentNode.parentNode.parentNode.id);
+      settingDropdown.remove();
+    }
+
+      if (!event.target.parentNode.matches('.task-settings')) {
+        settingDropdown.remove();
+      }
+    }
+  
 };
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {

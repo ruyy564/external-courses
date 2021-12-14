@@ -15,6 +15,11 @@ main {
     padding: 20px;
 }
 
+#msg {
+    color: #5E6C84;
+    display: none;
+}
+
 .task-settings {
     width: 20px;
     height: 18px;
